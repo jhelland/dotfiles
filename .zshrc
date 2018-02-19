@@ -28,10 +28,6 @@ source ~/.cache/wal/colors-tty.sh
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-# custom aliases
-alias llcd='cd $(ls -dtr */ | tail -1)'
-alias wscan='sudo iw "wlp3s0" scan | grep "SSID:"'
-
 function mk {
 	command mkdir $1 && cd $1
 }

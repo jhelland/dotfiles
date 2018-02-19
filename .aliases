@@ -10,3 +10,7 @@ fuction chpwd() {
 	emulate -L zsh
 	ls -a
 }
+
+alias llcd='cd $(ls -dtr */ | tail -1)'  # cd into most recent previous cd for directory
+alias wscan='sudo iw "wlp3s0" scan | grep "SSID:"'  # scan for wireless networks
+
