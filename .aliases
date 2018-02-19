@@ -1,0 +1,12 @@
+
+# script to change wallpaper to specified input
+function wallpaper() {
+	dir="$1"
+	wal -i $dir
+}
+
+# ls on cd
+fuction chpwd() {
+	emulate -L zsh
+	ls -a
+}
