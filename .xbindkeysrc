@@ -1,0 +1,25 @@
+
+# Increase Volume
+"pactl set-sink-volume 0 +1000"
+	m:0x0 + c:123
+#	XF86AudioRaiseVolume
+
+# decrease volume
+"pactl set-sink-volume 0 -1000"
+	m:0x0 + c:122
+#	XF86AudioLowerVolume
+
+# brightness up
+"xbacklight +10"
+	m:0x0 + c:233
+#	XF86MonBrightnessUp
+
+# brightness down
+"xbacklight -10"
+	m:0x0 + c:232
+#	XF86MonBrightnessDown
+
+# dmenu
+# "dmenu_run -i -b -p 'Name' -nb '#fdf6e3' -nf '#586c75' -sf '#fdf6e3' -sb '#b58900'"
+# 	m:0x4 + c:65
+# 	Control + space
