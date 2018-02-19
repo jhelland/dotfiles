@@ -1,0 +1,393 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color3:#222}
+foreground = ${xrdb:color15:#222}
+foreground-alt = ${xrdb:color2:#555}
+highlight = ${xrdb:color4:#f00}
+urgent = #f00
+
+[settings]
+screenchange-reload = true 
+[global/wm]
+margin-top = 3
+margin-bottom = 3
+
+[bar/main]
+;monitor = ${env:MONITOR}
+width = 100%
+height = 25
+;offset-x = 1%
+offset-y = 0%
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+;border-bottom = 0
+;border-top = 15
+;border-right = 25
+;border-left = 25
+border-size = 0
+border-color = #00000000
+
+padding-left = 1
+padding-right = 2
+padding-top = 2
+padding-bottom = 2
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "xos4 Terminus:pixelsize=11;2"
+font-1 = "FontAwesome:pixelsize=12;2"
+font-2 = "Inconsolata:pixelsize=11;2"
+font-3 = "Noto Sans:size=11;2"
+
+;modules-left = i3icons
+modules-center = date
+modules-right = vpncheck cpu pavolume keyboard
+
+;fix tray position
+;override-redirect = true
+
+tray-detached = false
+tray-position =
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 16
+tray-padding = 0
+tray-scale = 1
+tray-background = ${colors.background}
+
+[bar/secondary]
+; Same as primary with no tray
+inherit = bar/main
+monitor = ${env:MONITOR}
+tray-position =
+
+[bar/laptop]
+inherit = bar/main
+monitor = ${env:MONITOR}
+; high res
+height = 20
+
+modules-left = i3
+modules-center = date 
+modules-right = wireless_network cpu volume_percentage battery
+
+font-0 = "xos4 Terminus:pixelsize=11;2"
+font-1 = "FontAwesome:pixelsize=12;3"
+font-2 = "Inconsolata:pixelsize=11;1"
+font-3 = "Noto Sans:size=11;2"
+
+tray-detached = false
+tray-position =
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 26
+tray-padding = 0
+tray-scale = 1
+tray-background = ${colors.background}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+label-foreground = ${colors.foreground}
+
+[module/i3]
+type = internal/i3
+format = <label-state><label-mode>
+
+index-sort = true
+enable-click = false
+enable-scroll = false
+
+ws-icon-0 = "1;1"
+ws-icon-1 = "2;2"
+ws-icon-2 = "3;3"
+ws-icon-3 = "4;4"
+ws-icon-4 = "5;5"
+ws-icon-5 = "6;6"
+ws-icon-7 = "7;7"
+ws-icon-8 = "8;8"
+ws-icon-9 = "9;9"
+
+;label-mode-padding = 4
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+label-mode = %icon%
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-foreground = ${colors.highlight}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.highlight}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.highlight}
+label-unfocused-background = ${colors.background}
+label-unfocused-padding = 1
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-foreground = ${colors.foreground-alt}
+label-urgent-background = ${colors.background}
+
+label-visible = %icon%
+label-visible-padding = 1
+
+[module/i3icons]
+inherit = module/i3
+
+# icon definition found in ~/.config/polybar/launch.sh
+
+ws-icon-0 = ${env:POLY_WS_ICON_0}
+ws-icon-1 = ${env:POLY_WS_ICON_1}
+ws-icon-2 = ${env:POLY_WS_ICON_2}
+ws-icon-3 = ${env:POLY_WS_ICON_3}
+ws-icon-4 = ${env:POLY_WS_ICON_4}
+ws-icon-5 = ${env:POLY_WS_ICON_5}
+ws-icon-6 = ${env:POLY_WS_ICON_6}
+ws-icon-7 = ${env:POLY_WS_ICON_7}
+ws-icon-8 = ${env:POLY_WS_ICON_8}
+;ws-icon-default = 
+
+
+[module/wireless_network]
+type = internal/network
+interface = wlp3s0
+
+interval = 3.0
+
+; @deprecated
+upspeed-minwidth = 5
+
+; accumulate values from all interfaces when querying for up/down rate
+accumulate-stats = true
+
+format-connected = <ramp-signal><label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss><label-connected>
+
+label-connected-prefix = "NET "
+label-connected-prefix-foreground = ${colors.foreground-alt}
+
+label-disconnected-prefix = "NET "
+label-disconnected-prefix-foreground = ${colors.foreground-alt}
+
+label-packetloss-prefix = "NET "
+label-packetloss-prefix-foreground = ${colors.foreground-alt}
+
+label-connected = [%essid%] [%signal%]
+label-connected-foreground = ${colors.foreground}
+
+label-disconnected = DISCONNECTED
+label-disconnected-foreground = #66ffffff
+
+ramp-signal-0 = "NET (0) " 
+ramp-signal-1 = "NET (1) "
+ramp-signal-1-foreground = ${colors.foreground-alt}
+ramp-signal-2 = "NET (2) "
+ramp-signal-2-foreground = ${colors.foreground-alt}
+ramp-signal-3 = "NET (3) "
+ramp-signal-3-foreground = ${colors.foreground-alt}
+ramp-signal-4 = "NET (4) "
+ramp-signal-4-foreground = ${colors.foreground-alt}
+ramp-signal-5 = "NET (5) "
+ramp-signal-5-foreground = ${colors.foreground-alt}
+
+animation-packetloss-0 = !!!
+animation-packetloss-0-foreground = ${colors.foreground}
+animation-packetloss-1 = ...
+animation-packetloss-1-foreground = ${colors.foreground}
+animation-packetloss-framerate = 500  ; milliseconds
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.foreground-alt}
+
+format = <label>
+format-foreground = ${colors.foreground}
+
+label = [%percentage%%]
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+; Seconds to sleep between progressbar/song timer sync, Default: 1
+interval = 2
+
+format-online = <label-song>
+format-online-prefix = " "
+format-online-prefix-foreground = ${colors.foreground-alt}
+
+label-song = %artist% - %title%
+label-offline = mpd is offline
+
+[module/current-song-spotify]
+type = custom/script
+exec = ~/Scripts/spotify.sh %artist% - %title%
+tail = true
+interval = 2
+
+[module/volume]
+type = internal/volume
+
+format-volume = <label-volume> <bar-volume>
+label-volume = VOL
+label-volume-foreground = ${root.foreground}
+
+;format-muted-prefix = "VOL "
+;format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+;bar-volume-width = 10
+;bar-volume-foreground-0 = ${colors.foreground}
+;bar-volume-foreground-1 = ${colors.foreground}
+;bar-volume-foreground-2 = ${colors.foreground}
+;bar-volume-foreground-3 = ${colors.foreground}
+;bar-volume-foreground-4 = ${colors.foreground}
+;bar-volume-foreground-5 = ${colors.foreground}
+;bar-volume-foreground-6 = ${colors.foreground-alt}
+;bar-volume-gradient = false
+;bar-volume-indicator = |
+;bar-volume-indicator-font = 2
+;bar-volume-fill = ─
+;bar-volume-fill-font = 2
+;bar-volume-empty = ─
+;bar-volume-empty-font = 2
+;bar-volume-empty-foreground = ${colors.foreground-alt}
+
+headphone-soundcard = default
+headphone-mixer = Headphone
+headphone-id = 9
+ramp-headphones-0 = "(H) "
+ramp-headphones-1 = "(H) "
+
+[module/volume_percentage]
+type = internal/volume
+
+format-volume-prefix = "VOL "
+format-volume-prefix-foreground = ${colors.foreground-alt}
+format-volume = <label-volume>
+
+label-volume = [%percentage%%]
+label-volume-foreground = ${colors.foreground}
+
+format-muted-foreground = ${colors.foreground}
+format-muted-prefix = "VOL "
+format-muted-prefix-foreground = ${colors.foreground-alt}
+label-muted = muted
+label-muted-foreground = ${colors.urgent}
+
+
+[module/pavolume]
+; useful if machine is using multiple sinks
+type = custom/script
+interval = 2
+label = %output%
+exec = bash ~/Scripts/pavolume.sh
+; click-right = exec pavucontrol
+click-left = sh ~/Scripts/pavolume.sh --togmute
+scroll-up = sh ~/Scripts/pavolume.sh --up
+scroll-down = sh ~/Scripts/pavolume.sh --down
+
+[module/keyboard]
+type = internal/xkeyboard
+
+format-prefix = "KEY "
+format-prefix-foreground = ${colors.foreground-alt}
+format = <label-layout>
+format-foreground = ${colors.foreground}
+label = layout = %name%
+
+[module/vpncheck]
+type = custom/script
+exec = sh ~/Scripts/vpncheck.sh
+format-foreground = ${colors.foreground}
+interval = 5
+
+[module/battery]
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+
+;
+; Default: 5
+poll-interval = 5
+
+format-charging-prefix = "BAT (C) "
+format-charging-prefix-foreground = ${colors.foreground-alt}
+
+format-discharging-prefix = "BAT (D) "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+
+format-full-prefix = "BAT (F) "
+format-full-prefix-foreground = ${colors.foreground-alt}
+
+format-foreground = ${colors.foreground}
+format-charging = <label-charging>
+format-discharging = <label-discharging>
+format-full = <label-full>
+
+label-charging = [%percentage%%]
+label-discharging = [%percentage%%]
+
+; Available tokens:
+;   %percentage% (default)
+;label-full = [%percentage%%]
+label-full = [%percentage%%]
+
+[module/time]
+type = internal/date
+interval = 5
+time = %I:%M
+time-alt = %H:%M:%S
+format-prefix-foreground = ${colors.foreground}
+label = %time%
+
+[module/date]
+type = internal/date
+interval = 1
+
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = ""
+format-foreground = ${colors.foreground}
+
+date = "%Y/%m/%d | "
+date-alt = "It is day %j, week %V, of year %y of the %Cth century;"
+time = "%I:%M %p"
+time-alt = " %z %Z."
+label = " %date%%time% "
