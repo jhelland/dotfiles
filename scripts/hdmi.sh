@@ -6,8 +6,11 @@
 # default monitor
 MONITOR=eDP1
 
+# port names
+PORTS="$(xrandr | grep -oP '^.[^0-9 ]+')"
+
 function IsActive {
-	[ $MONITOR = $1 ]
+	[[ $MONITOR = $1 ]]
 }
 function IsConnected {
 	! xrandr | grep $1 | grep disconnected
@@ -26,17 +29,22 @@ function DeactivateInput {
 # script
 while true
 do
-	DEVS="DP1 HDMI1 HDMI2"
-	for word in $DEVS
+  DEVS="DP1 HDMI1 HDMI2"
+	for port in $DEVS  # $PORTS
   {
-		if IsConnected $word && ! IsActive $word
+    if [[ $port == "Screen" ]]
+    then
+      continue
+    fi
+
+		if IsConnected $port && ! IsActive $port
 		then
-			ActivateInput $word	
+			ActivateInput $port
 		fi
 
-		if ! IsConnected $word && IsActive $word
+		if ! IsConnected $port && IsActive $port
 		then
-			DeactivateInput $word
+			DeactivateInput $port
 		fi
   }
 
