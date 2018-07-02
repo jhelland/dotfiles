@@ -153,7 +153,8 @@ bindsym $mod+r exec urxvt -name ranger -e ranger
 bindsym $sup+n exec urxvt -name ncmpcpp -e ncmpcpp; exec --no-startup-id mpc random on; exec --no-startup-id mpc repeat on
 bindsym $sup+t exec urxvt -name vtop -e vtop
 bindsym $sup+s exec spotify
-bindsym $sup+m exec matlab 
+bindsym $sup+m exec matlab -softwareopengl
+bindsym $sup+c exec bash ~/Scripts/music.sh
 
 # All in one music bind -> d for dance
 bindsym $sup+d exec urxvt -name dance -e sh ~/Scripts/music_mux.sh
