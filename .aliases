@@ -53,11 +53,12 @@ up() {
 #--------------------------------------
 # aliases
 #--------------------------------------
-alias llcd='cd $(ls -dtr */ | tail -1)'  # cd into most recent previous cd for directory
-alias wscan='sudo iw "wlp3s0" scan | grep "SSID:"'  # scan for wireless networks
+alias llcd='cd $(ls -dtr */ | tail -1)'  # cd into most recent directory
+alias wscan='sudo iw "wlp3s0" scan | grep "SSID:" | sort -u'  # scan and display wireless networks
 alias histg='history | grep'
 alias ...='cd ../..'
 alias cmount='mount | column -t'
 alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'"
 alias meminfo='free -m -l -t'
+alias rm='\rm'  # thank you zsh
 
