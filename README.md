@@ -1,11 +1,12 @@
 # script-kiddy-arch
 
-[utilities]
+[UTILITIES]
 - **wm**: i3
 - **terminal**: urxvt
 - **shell**: zsh
 - **editor**: vim
 - **bar**: polybar
+- **AUR**: yay
 - **color scheme**: wal
 - **laptop battery**: tlp
 - **music**: cmus + cli-visualizer, spotify
