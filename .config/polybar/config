@@ -86,7 +86,7 @@ height = 20
 
 modules-left = i3
 modules-center = date 
-modules-right = wireless_network cpu volume_percentage battery
+modules-right = wireless_network cpu memory volume_percentage battery
 
 font-0 = "xos4 Terminus:pixelsize=11;2"
 font-1 = "FontAwesome:pixelsize=12;3"
@@ -197,22 +197,22 @@ label-disconnected-prefix-foreground = ${colors.foreground-alt}
 label-packetloss-prefix = "NET "
 label-packetloss-prefix-foreground = ${colors.foreground-alt}
 
-label-connected = [%essid%] [%signal%]
+label-connected = [%essid%] [%signal%] 
 label-connected-foreground = ${colors.foreground}
 
 label-disconnected = DISCONNECTED
 label-disconnected-foreground = #66ffffff
 
-ramp-signal-0 = "NET (0) " 
-ramp-signal-1 = "NET (1) "
+ramp-signal-0 = "NET (STR:0/5) " 
+ramp-signal-1 = "NET (STR:1/5) "
 ramp-signal-1-foreground = ${colors.foreground-alt}
-ramp-signal-2 = "NET (2) "
+ramp-signal-2 = "NET (STR:2/5) "
 ramp-signal-2-foreground = ${colors.foreground-alt}
-ramp-signal-3 = "NET (3) "
+ramp-signal-3 = "NET (STR:3/5) "
 ramp-signal-3-foreground = ${colors.foreground-alt}
-ramp-signal-4 = "NET (4) "
+ramp-signal-4 = "NET (STR:4/5) "
 ramp-signal-4-foreground = ${colors.foreground-alt}
-ramp-signal-5 = "NET (5) "
+ramp-signal-5 = "NET (STR:5/5) "
 ramp-signal-5-foreground = ${colors.foreground-alt}
 
 animation-packetloss-0 = !!!
@@ -391,3 +391,12 @@ date-alt = "It is day %j, week %V, of year %y of the %Cth century;"
 time = "%I:%M %p"
 time-alt = " %z %Z."
 label = " %date%%time% "
+
+[module/memory]
+type = internal/memory
+interval = 3
+
+format-prefix = "RAM "
+format-prefix-foreground = ${colors.foreground-alt}
+format = <label>
+label = [%gb_used%/%gb_free%]
