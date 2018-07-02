@@ -1,0 +1,9 @@
+
+## set audio sources to use
+audio.cources=pulse
+
+## turns off overriding the user's terminal colors
+#colors.override.terminal=false
+
+## set color scheme
+colors.scheme=theme
