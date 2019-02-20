@@ -1,23 +1,40 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin on
+"set t_Co=256
+"set autowrite
+set backspace=indent,eol,start
+
+" visual appearance
 syntax on
-set t_Co=256
-set autowrite
 set number
 set relativenumber
+set nowrap
+set lazyredraw  " makes things faster
 
+" status line
+set statusline=%F  " full path to file
+set statusline+=%(\ [%M%R]%)  " modified and readonly flags
+
+" matching brace
+set showmatch
+
+" shorcuts
 vnoremap <C-c> "*y
 vnoremap <C-p> "*p
 map <Up> <nop>
 map <Left> <nop>
 map <Right> <nop>
 map <Down> <nop>
+imap jj <Esc>
 
 let g:indent_guides_enable_on_vim_startup = 1  " indent guides plugin on startup
 set ts=2 sw=2 et  " tab spacing
 let g:indent_guides_start_level=2
 let g:intend_guides_guide_size=1
+
+" file-type specific settings
+autocmd FileType markdown setlocal spell spelllang=en_us
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -27,22 +44,31 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-lexical'
-Plugin 'reedes/vim-wordy'
-Plugin 'reedes/vim-litecorrect'
-Plugin 'reedes/vim-textobj-quote'
-Plugin 'reedes/vim-textobj-sentence'
-Plugin 'dbmrq/vim-ditto'
-Plugin 'vim-scripts/LanguageTool'
-Plugin 'kana/vim-textobj-user'
-Plugin 'powerline/powerline'
-Plugin 'nathanaelkane/vim-indent-guides'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" C/C++ setup
+Plugin 'SirVer/ultisnips'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'tpope/vim-obsession'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'gikmx/ctrlp-obsession'
+Plugin 'dhruvasagar/vim-prosession'
 
+" python
+Plugin 'vim-scripts/indentpython.vim'
+"Plugin 'vim-syntastic/syntastic'
+
+" tree-based file hierarchy view
+Plugin 'scrooloose/nerdtree'
+
+" color scheme
+Plugin 'morhetz/gruvbox'
+
+" latex
+Plugin 'vim-latex/vim-latex'
+
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -57,34 +83,26 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" Put your non-Pluglet g:UltiSnipsExpandTrigger="<CAPS>"
 
-" Custom {{{
-function! Prose()
-	" custom color scheme
-	colo pencil
+" filtype specific
+let g:tex_flavor="latex"
 
-	setlocal spell
-	setlocal guifont=Monospace\ 12 
+" set make program (rubber)
+"autocmd FileType tex set makeprg=rubber\ --inplace\ --maxerr\ 1\ \ --pdf\ --short\ --quiet\ --force\% 
+" mapping for compiling latex file
+autocmd FileType tex nmap <buffer> <C-T> :!latexmk -pdf %<CR>
+autocmd FileType tex nmap <buffer> T :!open -a Skim %<.pdf %<.pdf<CR><CR>
+"autocmd FileType tex nmap <buffer> C :!rubber --clean<CR>
+autocmd FileType tex nmap <buffer> C :!latexmk -c %<CR><CR>
 
-	" initialize writing plugins
-	call pencil#init({'wrap': 'soft', 'autoformat': 1})
-	call lexical#init()
-	call litecorrect#init()
-	
-	" manual reformatting shortcuts
-	nnoremap \s ea<C-X><C-S>
-	nnoremap <buffer><silent> Q gqap
-	xnoremap <buffer><silent> Q gq
-	nnoremap <buffer><silent><leader>Q vapJgqap
-endfunction
+" skeleton files
+autocmd! BufNewFile * silent! 0r ~/.vim/skel/template.%:e
 
-" automatically initialize buffer by file type
-autocmd FileType markdown,mkd,text,doc call Prose()
+let python_highlight_all=1
 
-" invoke manually by command for other file types
-command! -nargs=0 Prose call Prose()
+let g:ctrlp_working_path_mode=0
 
-let g:languagetool_jar='$HOME/Documents/writing/LanguageTool-3.8/languagetool-commandline.jar'
+colorscheme gruvbox
 
 

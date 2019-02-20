@@ -1,0 +1,150 @@
+\documentclass[letterpaper,10pt]{article}
+
+
+%%% PACKAGES
+\usepackage[top=1cm, bottom=2cm, left=1.5cm, right=2cm]{geometry} 
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{xfrac}
+\usepackage{dsfont}
+\usepackage{relsize}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{mathrsfs}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{cprotect}
+\usepackage[noend]{algpseudocode}
+\usepackage[T1]{fontenc}
+\usepackage{filecontents}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+%\usepackage[numbered,framed]{matlab-prettifier}
+\usepackage{minted}  % for python code
+\usepackage{tcolorbox}
+\usepackage{etoolbox}
+\usepackage{tikz,tikz-qtree}
+
+
+%%% CUSTOM COLORS
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{myblue}{HTML}{2C3E50}
+\definecolor{myred}{HTML}{E74C3C}
+\definecolor{myturquoise}{HTML}{1F8A70}
+\definecolor{mygreen}{HTML}{BEDB39}
+\definecolor{myyellow}{HTML}{FFD34E}
+\definecolor{myorange}{HTML}{FD7400}
+\definecolor{mybabyblue}{HTML}{3498DB}
+
+
+%%% THEOREM ENVIRONMENTS
+% boxed theorem environment with color using tcolorbox package
+\tcbuselibrary{theorems}  % associated with tcolorbox package
+
+%--- theorem
+\newtcbtheorem[number within=section]{theo2}{Theorem}%
+{colback=mybabyblue!5,colframe=mybabyblue!35!black,fonttitle=\bfseries}{thm}
+
+%--- lemma
+\newtcbtheorem[number within=section]{lem}{Lemma}%
+{colback=mygreen!5,colframe=mygreen!35!black,fonttitle=\bfseries}{lemma}
+
+%--- proposition
+\newtcbtheorem[number within=section]{prop}{Proposition}%
+{colback=myred!5,colframe=myred!35!black,fonttitle=\bfseries}{prop}
+
+%--- definition
+\newtcbtheorem[number within=section]{defn}{Definition}%
+{colback=black!5, colframe=black!35!black, fonttitle=\bfseries}{defn}
+
+%--- corollary
+\newtcbtheorem[number within=section]{corollary}{Corollary}%
+{colback=orange!5, colframe=orange!35!black, fonttitle=\bfseries}{corollary}
+
+
+%%% MACROS
+\setlength\parindent{1cm}
+\raggedbottom
+%--- linear algebra
+\newcommand{\trace}{\text{trace}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\rank}{\text{rank}}
+\renewcommand{\vec}{\text{vec}}
+
+%--- set notation 
+\newcommand{\given}{\, | \,}
+\newcommand{\nullset}{\varnothing}
+\newcommand{\st}{\,:\,}
+\newcommand{\real}{\mathbb{R}}
+
+%--- statistics 
+\newcommand{\indicator}{\mathbb{I}}
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+% statistical independence
+\newcommand\indep{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+%--- misc
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\prob}{\mathbb{P}}
+\newcommand{\maps}[2]{\, : \, #1 \to #2}
+\newcommand{\sign}{\text{sign}}
+\DeclareMathOperator{\minimize}{\text{minimize}}
+\DeclareMathOperator{\argmax}{\text{argmax}}
+\DeclareMathOperator{\argmin}{\text{argmin}}
+\newcommand{\oline}[1]{\ensuremath{\overline{#1}}} 						% shorthand for a bar over an expression
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}	% used to label specific equation in align*
+
+
+%% MISCELLANEOUS
+% Store code snippets as their own files embedded in this document
+% \lstinputlisting[caption = *]{*}
+\begin{filecontents*}{}
+
+\end{filecontents*}
+
+% Matlab code display with syntax highlighting
+%\let\ph\mlplaceholder % shorter macro
+%\lstMakeShortInline"
+%\lstset{
+%  style              = Matlab-editor,
+%  basicstyle         = \mlttfamily,
+%  escapechar         = ",
+%  mlshowsectionrules = true,
+%}
+
+% tikz config
+\tikzset{small/.style={level distance=20pt,sibling distance=0pt}}
+
+% display code with syntax highlighting
+\setminted{
+    linenos=true,
+    autogobble,
+}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+
+
+%%% HEADER 
+\title{\bf TITLE}
+\author{Jonathan Helland}
+\date{}
+
+\graphicspath{{figures/}}
+
+
+%%% DOCUMENT
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+  \item 
+\end{enumerate}
+
+\end{document}
+
+
